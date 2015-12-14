@@ -1,0 +1,75 @@
+/*
+===========================================================================
+                                  KENNY LU
+---------------------------------------------------------------------------
+PROJECT: 151102
+CLIENT: N/A
+DELIVERABLE: PHP - JS codebase for Personal Profile 1.0
+CLASS: Utility
+TITLE: CSS Reset
+===========================================================================
+*/
+
+html {
+	// font-size: 100%;
+}
+
+div,
+header,
+main,
+section,
+article,
+aside,
+figure,
+figcaption,
+form,
+footer {
+  box-sizing: border-box;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+p:empty {
+  // display: none;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+  list-style: none;
+}
+
+img {
+  // display: block;
+}
+
+svg {
+  // display: block;
+  // -webkit-transform-origin: 0 0 0;
+}
+
+input {
+  border-radius: 0;
+  -webkit-appearance: none !important;
+}
+
+button {
+  // padding: 0;
+  border: none;
+}
