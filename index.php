@@ -6,6 +6,13 @@
 <script>
 	var countryApp = angular.module('countryApp', ['ngRoute']);
 
+	// making our own custom filters
+	countryApp.filter('encodeURI', function() {
+		return window.encodeURI;
+	});
+
+
+
 	countryApp.config(function($routeProvider) {
 		$routeProvider.
 		when('/', {
@@ -64,7 +71,7 @@
 		function getData(callback) {
 			$http({
 				method: 'GET',
-				url: 'countries.json',
+				url: 'http://www.w3schools.com/angular/customers.php',
 				// no need for cacheData
 				cache: true
 			}).success(callback);
@@ -74,7 +81,8 @@
 			list: getData,
 			find: function (countryName, callback) {
 				getData(function(data) {
-					var theCountry = data.filter(function(entry) {
+					// var theCountry = data.filter(function(entry) {
+					var theCountry = data.records.filter(function(entry) {
 						return entry.Country === countryName;
 					})[0];
 					callback(theCountry);
@@ -99,7 +107,8 @@
 		// using factory service
 		// on the injected 'countries' object, invoke list fn, pass in 'callback'
 		countries.list(function(countries) {
-			$scope.countries = countries;
+			// console.log(countries);
+			$scope.countries = countries.records;
 		});
 	});
 
