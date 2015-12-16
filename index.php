@@ -49,22 +49,32 @@
 	countryApp.factory('countries', function($http) {
 		var cachedData;
 
+		// function getData(callback) {
+		// 	if (cachedData) {
+		// 		callback(cachedData);
+		// 	} else {
+		// 		$http.get('http://www.w3schools.com/angular/customers.php').success(function(data) {
+		// 			cachedData = data.records;
+		// 			callback(cachedData);
+		// 		});
+		// 	}
+		// }
+
+		// using $http's own cached option
 		function getData(callback) {
-			if (cachedData) {
-				callback(cachedData);
-			} else {
-				$http.get('http://www.w3schools.com/angular/customers.php').success(function(data) {
-					cachedData = data.records;
-					callback(cachedData);
-				});
-			}
+			$http({
+				method: 'GET',
+				url: 'countries.json',
+				// no need for cacheData
+				cache: true
+			}).success(callback);
 		}
 
 		return {
 			list: getData,
 			find: function (countryName, callback) {
 				getData(function(data) {
-					var theCountry = data.records.filter(function(entry) {
+					var theCountry = data.filter(function(entry) {
 						return entry.Country === countryName;
 					})[0];
 					callback(theCountry);
